@@ -1,0 +1,6 @@
+{
+	"presets": [ "@wordpress/default" ],
+	"plugins": [
+		"babel-plugin-transform-class-properties"
+	]
+}
