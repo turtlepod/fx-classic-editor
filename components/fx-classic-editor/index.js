@@ -6,6 +6,7 @@
  * block's edit function. Unfortunately that editor is not exposed as a reusable
  * component.
  *
+ * @author    David Chandra Purnama <david.chandra@10up.com>
  * @version   1.0.0
  */
 
