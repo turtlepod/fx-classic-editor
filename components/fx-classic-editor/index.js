@@ -65,13 +65,13 @@ export default class fxClassicEditorEdit extends Component {
 
 	componentWillUnmount() {
 		window.addEventListener( 'DOMContentLoaded', this.initialize );
-		wp.oldEditor.remove( `editor-${ this.props.editorID }` );
+		wp.oldEditor.remove( `editor-${ this.props.clientId }-${ this.props.editorID }` );
 	}
 
 	componentDidUpdate( prevProps ) {
-		const { editorID, attributeName, attributes } = this.props;
+		const { clientId, editorID, attributeName, attributes } = this.props;
 
-		const editor = window.tinymce.get( `editor-${ editorID }` );
+		const editor = window.tinymce.get( `editor-${ clientId }-${ editorID }` );
 
 		if ( prevProps.attributes[attributeName] !== this.props.attributes[attributeName] ) {
 			editor.setContent( this.props.attributes[attributeName] || '' );
@@ -79,16 +79,16 @@ export default class fxClassicEditorEdit extends Component {
 	}
 
 	initialize() {
-		const { editorID } = this.props;
+		const { clientId, editorID } = this.props;
 		let { editorSettings } = this.props;
 		if ( undefined === editorSettings ) {
 			editorSettings = window.wpEditorL10n.tinymce.settings;
 		}
 
-		wp.oldEditor.initialize( `editor-${ editorID }`, {
+		wp.oldEditor.initialize( `editor-${ clientId }-${ editorID }`, {
 			tinymce: {
 				...editorSettings,
-				fixed_toolbar_container: `#toolbar-${ editorID }`,
+				fixed_toolbar_container: `#toolbar-${ clientId }-${ editorID }`,
 				setup: this.onSetup,
 			},
 		} );
@@ -182,12 +182,12 @@ export default class fxClassicEditorEdit extends Component {
 	}
 
 	render() {
-		const { editorID } = this.props;
+		const { clientId, editorID } = this.props;
 		return [
 			<div className="fx-classic-editor-wrap">
 				<div
 					key="editor"
-					id={ `editor-${ editorID }` }
+					id={ `editor-${ clientId }-${ editorID }` }
 					className="wp-block-freeform block-library-rich-text__tinymce"
 				/>
 			</div>
