@@ -198,7 +198,7 @@ export default class fxClassicEditorEdit extends Component {
 
 				<div id={ `toggle-${ clientId }-${ editorID }` } className="fx-classic-editor-toggle" style={ { display: 'none' } }>
 					<IconButton
-						icon='editor-code'
+						icon='edit'
 						label={ __( 'Edit using visual editor' ) }
 						onClick={ ( event ) => {
 							event.stopPropagation();
