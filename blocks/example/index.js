@@ -53,6 +53,7 @@ export default registerBlockType(
 								props.setAttributes( { testClassic1: value } )
 							} }
 							editorID="testClassic1"
+							rows='4'
 						/>
 
 						<div>

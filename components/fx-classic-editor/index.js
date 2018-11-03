@@ -233,7 +233,7 @@ export default class fxClassicEditorEdit extends Component {
 						this.props.onBlur( value );
 					} }
 					className="editor-plain-text"
-					rows='10'
+					rows={ this.props.rows || '10' }
 				/>
 			</div>
 		];
