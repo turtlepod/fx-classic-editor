@@ -45,7 +45,7 @@ export default registerBlockType(
 							{ ...props }
 							editorSettings={ {
 								plugins: Editorsettings.plugins,
-								toolbar1: 'bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,unlink,wp_add_media',
+								toolbar1: 'editashtml,bold,italic,link,unlink',
 								inline: false,
 							} }
 							editorValue= { testClassic1 }
@@ -73,7 +73,7 @@ export default registerBlockType(
 							{ ...props }
 							editorSettings={ {
 								plugins: Editorsettings.plugins,
-								toolbar1: 'bold,italic,link,unlink',
+								toolbar1: 'bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,unlink,wp_add_media',
 								inline: false,
 							} }
 							editorValue= { testClassic3 }
@@ -84,16 +84,7 @@ export default registerBlockType(
 			]
 		},
 		save: props => {
-			return (
-				<div>
-					<h2>{ __( 'Editor #1' ) }</h2>
-					<div> { props.attributes.testClassic1 } } </div>
-					<h2>{ __( 'Editor #2' ) }</h2>
-					<div dangerouslySetInnerHTML={ { __html: props.attributes.testClassic2 } } />
-					<h2>{ __( 'Editor #3' ) }</h2>
-					<div dangerouslySetInnerHTML={ { __html: props.attributes.testClassic2 } } />
-				</div>
-			);
+			return false;
 		},
 	},
 );
