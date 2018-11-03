@@ -83,8 +83,17 @@ export default registerBlockType(
 					</div>
 			]
 		},
-		save: function() {
-			return false;
+		save: props => {
+			return (
+				<div>
+					<h2>{ __( 'Editor #1' ) }</h2>
+					<div> { props.attributes.testClassic1 } } </div>
+					<h2>{ __( 'Editor #2' ) }</h2>
+					<div dangerouslySetInnerHTML={ { __html: props.attributes.testClassic2 } } />
+					<h2>{ __( 'Editor #3' ) }</h2>
+					<div dangerouslySetInnerHTML={ { __html: props.attributes.testClassic2 } } />
+				</div>
+			);
 		},
 	},
 );
