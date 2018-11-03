@@ -48,8 +48,11 @@ export default registerBlockType(
 								toolbar1: 'bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,unlink,wp_add_media',
 								inline: false,
 							} }
+							editorValue= { testClassic1 }
+							onBlur={ ( value ) => {
+								props.setAttributes( { testClassic1: value } )
+							} }
 							editorID="testClassic1"
-							attributeName="testClassic1"
 						/>
 
 						<div>
@@ -58,7 +61,8 @@ export default registerBlockType(
 						<FxClassicEditor
 							{ ...props }
 							editorID="testClassic2"
-							attributeName="testClassic2"
+							editorValue= { testClassic2 }
+							onBlur={ ( value ) => props.setAttributes( { testClassic2: value } ) }
 						/>
 
 						<div>
@@ -71,8 +75,9 @@ export default registerBlockType(
 								toolbar1: 'bold,italic,link,unlink',
 								inline: false,
 							} }
+							editorValue= { testClassic3 }
+							onBlur={ ( value ) => props.setAttributes( { testClassic3: value } ) }
 							editorID="testClassic3"
-							attributeName="testClassic3"
 						/>
 					</div>
 			]
