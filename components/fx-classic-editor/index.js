@@ -115,9 +115,14 @@ export default class fxClassicEditorEdit extends Component {
 				const active = ! button.active();
 				button.active( active );
 
-				jQuery( `#toggle-${ clientId }-${ editorID }` ).show();
+				// Show toggle button to go back to mce.
+				document.getElementById( `toggle-${ clientId }-${ editorID }` ).style.display = 'block';
+
+				// Remove editor.
 				wp.oldEditor.remove( `editor-${ clientId }-${ editorID }` );
-				jQuery( `#editor-${ clientId }-${ editorID }` ).addClass( 'editor-plain-text' );
+
+				// Add class for style.
+				document.getElementById( `editor-${ clientId }-${ editorID }` ).classList.add( 'editor-plain-text' );
 			},
 		} );
 
@@ -210,7 +215,7 @@ export default class fxClassicEditorEdit extends Component {
 								editorSettings = window.wpEditorL10n.tinymce.settings;
 							}
 
-							jQuery( `#toggle-${ clientId }-${ editorID }` ).hide();
+							document.getElementById( `toggle-${ clientId }-${ editorID }` ).style.display = 'none';
 
 							wp.oldEditor.initialize( `editor-${ clientId }-${ editorID }`, {
 								tinymce: {
