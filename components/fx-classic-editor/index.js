@@ -66,27 +66,27 @@ export default class fxClassicEditorEdit extends Component {
 
 	componentWillUnmount() {
 		window.addEventListener( 'DOMContentLoaded', this.initialize );
-		wp.oldEditor.remove( `editor-${ this.props.clientId }-${ this.props.editorID }` );
+		wp.oldEditor.remove( `editor-${ this.props.editorID }` );
 	}
 
 	initialize() {
-		const { clientId, editorID } = this.props;
+		const { editorID } = this.props;
 		let { editorSettings } = this.props;
 		if ( undefined === editorSettings ) {
 			editorSettings = window.wpEditorL10n.tinymce.settings;
 		}
 
-		wp.oldEditor.initialize( `editor-${ clientId }-${ editorID }`, {
+		wp.oldEditor.initialize( `editor-${ editorID }`, {
 			tinymce: {
 				...editorSettings,
-				fixed_toolbar_container: `#toolbar-${ clientId }-${ editorID }`,
+				fixed_toolbar_container: `#toolbar-${ editorID }`,
 				setup: this.onSetup,
 			},
 		} );
 	}
 
 	onSetup( editor, reload = false ) {
-		const { clientId, editorID, editorValue, attributes, setAttributes } = this.props;
+		const { editorID, editorValue, attributes } = this.props;
 		const { ref } = this;
 
 		this.editor = editor;
@@ -116,13 +116,13 @@ export default class fxClassicEditorEdit extends Component {
 				button.active( active );
 
 				// Show toggle button to go back to mce.
-				document.getElementById( `toggle-${ clientId }-${ editorID }` ).style.display = 'block';
+				document.getElementById( `toggle-${ editorID }` ).style.display = 'block';
 
 				// Remove editor.
-				wp.oldEditor.remove( `editor-${ clientId }-${ editorID }` );
+				wp.oldEditor.remove( `editor-${ editorID }` );
 
 				// Add class for style.
-				document.getElementById( `editor-${ clientId }-${ editorID }` ).classList.add( 'editor-plain-text' );
+				document.getElementById( `editor-${ editorID }` ).classList.add( 'editor-plain-text' );
 			},
 		} );
 
@@ -192,7 +192,7 @@ export default class fxClassicEditorEdit extends Component {
 	}
 
 	render() {
-		const { clientId, editorID } = this.props;
+		const { editorID } = this.props;
 		let { editorSettings } = this.props;
 		if ( undefined === editorSettings ) {
 			editorSettings = window.wpEditorL10n.tinymce.settings;
@@ -201,7 +201,7 @@ export default class fxClassicEditorEdit extends Component {
 		return [
 			<div className="fx-classic-editor-wrap">
 
-				<div id={ `toggle-${ clientId }-${ editorID }` } className="fx-classic-editor-toggle" style={ { display: 'none' } }>
+				<div id={ `toggle-${ editorID }` } className="fx-classic-editor-toggle" style={ { display: 'none' } }>
 					<IconButton
 						icon='edit'
 						label={ __( 'Edit using visual editor' ) }
@@ -209,21 +209,21 @@ export default class fxClassicEditorEdit extends Component {
 							event.stopPropagation();
 
 							// not sure why `this.initialize` not working and need to be duplicated here.
-							const { clientId, editorID } = this.props;
+							const { editorID } = this.props;
 							let { editorSettings } = this.props;
 							if ( undefined === editorSettings ) {
 								editorSettings = window.wpEditorL10n.tinymce.settings;
 							}
 
-							document.getElementById( `toggle-${ clientId }-${ editorID }` ).style.display = 'none';
+							document.getElementById( `toggle-${ editorID }` ).style.display = 'none';
 
-							wp.oldEditor.initialize( `editor-${ clientId }-${ editorID }`, {
+							wp.oldEditor.initialize( `editor-${ editorID }`, {
 								tinymce: {
 									...editorSettings,
-									fixed_toolbar_container: `#toolbar-${ clientId }-${ editorID }`,
+									fixed_toolbar_container: `#toolbar-${ editorID }`,
 									setup: ( editor ) => {
 										this.onSetup( editor, true );
-										editor.on( 'loadContent', () => { return $( `editor-${ clientId }-${ editorID }` ).val() } );
+										editor.on( 'loadContent', () => { return $( `editor-${ editorID }` ).val() } );
 									},
 								},
 							} );
@@ -233,7 +233,7 @@ export default class fxClassicEditorEdit extends Component {
 				</div>
 
 				<TextareaControl
-					id={ `editor-${ clientId }-${ editorID }` }
+					id={ `editor-${ editorID }` }
 					onChange={ ( value ) => {
 						this.props.onBlur( value );
 					} }

@@ -42,7 +42,6 @@ export default registerBlockType(
 							{ __( 'Editor #1' ) }
 						</div>
 						<FxClassicEditor
-							{ ...props }
 							editorSettings={ {
 								plugins: Editorsettings.plugins,
 								toolbar1: 'editashtml,bold,italic,link,unlink',
@@ -52,7 +51,7 @@ export default registerBlockType(
 							onBlur={ ( value ) => {
 								props.setAttributes( { testClassic1: value } )
 							} }
-							editorID="testClassic1"
+							editorID={ `${ props.clientId }-testClassic1` }
 							rows='4'
 						/>
 
@@ -60,8 +59,7 @@ export default registerBlockType(
 							{ __( 'Editor #2' ) }
 						</div>
 						<FxClassicEditor
-							{ ...props }
-							editorID="testClassic2"
+							editorID={ `${ props.clientId }-testClassic2` }
 							editorValue= { testClassic2 }
 							onBlur={ ( value ) => props.setAttributes( { testClassic2: value } ) }
 						/>
@@ -70,15 +68,14 @@ export default registerBlockType(
 							{ __( 'Editor #3' ) }
 						</div>
 						<FxClassicEditor
-							{ ...props }
 							editorSettings={ {
 								plugins: Editorsettings.plugins,
-								toolbar1: 'bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,unlink,wp_add_media',
+								toolbar1: 'editashtml,bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,unlink,wp_add_media',
 								inline: false,
 							} }
 							editorValue= { testClassic3 }
 							onBlur={ ( value ) => props.setAttributes( { testClassic3: value } ) }
-							editorID="testClassic3"
+							editorID={ `${ props.clientId }-testClassic3` }
 						/>
 					</div>
 			]
