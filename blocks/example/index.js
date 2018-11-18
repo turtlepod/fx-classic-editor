@@ -4,8 +4,11 @@
 import FxClassicEditor from '../../components/fx-classic-editor';
 
 const {
-	__
+	__,
 } = wp.i18n;
+const {
+	RawHTML,
+} = wp.element;
 const {
 	registerBlockType
 } = wp.blocks;
@@ -80,8 +83,18 @@ export default registerBlockType(
 					</div>
 			]
 		},
-		save: props => {
-			return false;
+		save( { attributes } ) {
+			const { testClassic1,testClassic2,testClassic3 } = attributes;
+			return (
+				<div>
+					<h3>{ __( 'Editor #1' ) }</h3>
+					<RawHTML>{ testClassic1 }</RawHTML>
+					<h3>{ __( 'Editor #2' ) }</h3>
+					<RawHTML>{ testClassic2 }</RawHTML>
+					<h3>{ __( 'Editor #3' ) }</h3>
+					<RawHTML>{ testClassic3 }</RawHTML>
+				</div>
+			);
 		},
 	},
 );
