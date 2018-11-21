@@ -24,11 +24,6 @@ const {
 } = wp.i18n;
 
 const {
-	BlockControls,
-	MediaUpload,
-} = wp.editor;
-
-const {
 	IconButton,
 	TextareaControl,
 } = wp.components;
